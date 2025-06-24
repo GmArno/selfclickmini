@@ -4,15 +4,34 @@
   <meta charset="UTF-8">
   <title>Monetag Ad Viewer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Monetag SDK -->
   <script src='//libtl.com/sdk.js' data-zone='9484784' data-sdk='show_9484784'></script>
+
   <style>
-    body { font-family: sans-serif; background: #f4f4f4; text-align: center; padding: 20px; }
-    button { margin: 10px; padding: 15px 25px; font-size: 18px; border-radius: 8px; border: none; background-color: #007bff; color: white; cursor: pointer; }
-    button:hover { background-color: #0056b3; }
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 20px;
+    }
+    button {
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
-  <h2>👋 Welcome to Monetag Ad Center</h2>
+  <h2>👋 Welcome to Monetag Ad Center. Dont misuse It is only for Demo check</h2>
 
   <button onclick="showPopunder()">Show Reward Ad</button>
   <button onclick="showInterstitial()">Show Interstitial Ad</button>
@@ -20,80 +39,59 @@
   <button onclick="showAdv()">Show Advertica Ad</button>
   <button onclick="showAdvP()">Show Advertica PopUp Ad</button>
 
+  <!-- Container for banner ads and Advertica display -->
   <div id="banner-container" style="margin-top:20px;"></div>
+  <div id="advertica" style="margin-top:20px;"></div>
+
+  <!-- Advertica Inline Ad (automatically displayed) -->
+  <div class="ad-container">
+    <ins style="width: 300px; height: 250px" 
+         data-width="300" 
+         data-height="250" 
+         class="g31d7a6893a" 
+         data-domain="//data963.click" 
+         data-affquery="/348973a69d8584b84f7c/31d7a6893a/?placementName=default">
+      <script src="//data963.click/js/responsive.js" async></script>
+    </ins>
+  </div>
 
   <script>
     function showPopunder() {
-      // Monetag Popunder
-      show_9484784('pop');
+      show_9484784('pop'); // Monetag Popunder
     }
 
     function showInterstitial() {
-      // Rewarded interstitial
-
-show_9484784() ;
-
+      show_9484784(); // Rewarded Interstitial
     }
 
-    function showAdv(){
+    function showBanner() {
+      show_9484784({
+        type: 'inApp',
+        inAppSettings: {
+          frequency: 2,
+          capping: 0.1,
+          interval: 30,
+          timeout: 5,
+          everyPage: false
+        }
+      });
+    }
 
+    function showAdv() {
       const container = document.getElementById('advertica');
-      container.innerHTML = ''; // Clear any old ad
+      container.innerHTML = ''; // Clear previous ad
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = '//data963.click/0fb895dcf9b08dff9b2d/eed4cc5496/?placementName=default';
       container.appendChild(script);
-      
     }
 
-    function showAdvP(){
-
-      var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = '//data963.click/1ae844fe7faa4fae385e/40ef2b456b/?placementName=default';
-            document.body.appendChild(script);
-
-      
-      
-    }
-
-    function showBanner() {
-      // In-App Interstitial
-
-show_9484784({
-  type: 'inApp',
-  inAppSettings: {
-    frequency: 2,
-    capping: 0.1,
-    interval: 30,
-    timeout: 5,
-    everyPage: false
-  }
-})
-
-/*
-This value is decoded as follows:
-- show automatically 2 ads
-  within 0.1 hours (6 minutes)
-  with a 30-second interval between them
-  and a 5-second delay before the first one is shown.
-  The last digit, 0, means that the session will be saved when you navigate between pages.
-  If you set the last digit as 1, then at any transition between pages,
-  the session will be reset, and the ads will start again.
-*/
+    function showAdvP() {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = '//data963.click/1ae844fe7faa4fae385e/40ef2b456b/?placementName=default';
+      document.body.appendChild(script);
     }
   </script>
-
-  <div class="ad-container">
-        <ins style="width: 300px; height: 250px" 
-             data-width="300" 
-             data-height="250" 
-             class="g31d7a6893a" 
-             data-domain="//data963.click" 
-             data-affquery="/348973a69d8584b84f7c/31d7a6893a/?placementName=default">
-            <script src="//data963.click/js/responsive.js" async></script>
-        </ins>
-  </div>
-
 </body>
 </html>
