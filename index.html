@@ -87,10 +87,22 @@
     }
 
     function showAdvP() {
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = '//data963.click/1ae844fe7faa4fae385e/40ef2b456b/?placementName=default';
-      document.body.appendChild(script);
+  // Create a temporary iframe or new window to trigger the popup
+  const newWin = window.open('', '_blank'); // required for popup permission
+
+  if (newWin) {
+    // If popup blocker allows it
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '//data963.click/1ae844fe7faa4fae385e/40ef2b456b/?placementName=default';
+    
+    // Append the script to the new window
+    newWin.document.write('<html><head><title>Ad</title></head><body></body></html>');
+    newWin.document.close();
+    newWin.document.body.appendChild(script);
+  } else {
+    alert('Popup blocked! Please allow popups for this site.');
+  }
     }
   </script>
 </body>
